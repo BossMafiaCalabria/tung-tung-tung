@@ -1,48 +1,40 @@
 import arcade
-import animatronico
-import gestore_audio
-import gestore_gioco
-import gestore_minigiochi
-import impostazioni
-import interfaccia
-import menu
-import minigioco_base
-import minigioco_fuga
-import minigioco_memoria
-import minigioco_nascondiglio
-import minigioco_riparazione
-import schermata_storia
-import schermata_notte
-import sistema_telecamere
+from impostazioni import LARGHEZZA, ALTEZZA, FPS, TITOLO
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Hello Arcade"
-
-
-class HelloWindow(arcade.Window):
+class Game(arcade.Window):
     def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-        arcade.set_background_color(arcade.color.DARK_BLUE_GRAY)
+        super().__init__(LARGHEZZA, ALTEZZA, TITOLO)
+        arcade.set_background_color(arcade.color.BLACK)
+        self.stato = "MENU"
+
+        # Importi i moduli QUI DENTRO, solo quando esistono
+        # from menu import Menu
+        # self.menu = Menu()
 
     def on_draw(self):
         self.clear()
+        # Per ora solo un testo placeholder
         arcade.draw_text(
-            "Hello!",
-            SCREEN_WIDTH / 2,
-            SCREEN_HEIGHT / 2,
+            "Game OK",
+            LARGHEZZA / 2,
+            ALTEZZA / 2,
             arcade.color.WHITE,
-            font_size=72,
+            font_size=48,
             anchor_x="center",
             anchor_y="center",
-            bold=True,
         )
 
+    def on_update(self, delta_time):
+        # Logica aggiornamento in base allo stato
+        pass
+
+    def on_key_press(self, key, modifiers):
+        if key == arcade.key.ESCAPE:
+            arcade.close_window()
 
 def main():
-    window = HelloWindow()
+    window = Game()
     arcade.run()
-
 
 if __name__ == "__main__":
     main()
