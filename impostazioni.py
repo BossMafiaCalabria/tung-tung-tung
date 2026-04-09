@@ -1,33 +1,31 @@
-# impostazioni.py
+# impostazioni.py — BLACK NIGHT
 import arcade
 
-# --- Rileva la dimensione del monitor ---
-schermo_info = arcade.get_display_size()
-MONITOR_LARGHEZZA = schermo_info[0]
-MONITOR_ALTEZZA   = schermo_info[1]
+# ── Rileva monitor ────────────────────────────────────────────
+monitor_w, monitor_h = arcade.get_display_size()
 
-# --- Modalità finestra ---
-# Cambia qui: "finestra", "fullscreen", "adattiva"
+# ── Modalità: "finestra", "adattiva", "fullscreen" ────────────
 MODALITA = "adattiva"
 
 if MODALITA == "fullscreen":
-    LARGHEZZA = MONITOR_LARGHEZZA
-    ALTEZZA   = MONITOR_ALTEZZA
+    LARGHEZZA = monitor_w
+    ALTEZZA   = monitor_h
 
 elif MODALITA == "adattiva":
-    # 80% dello schermo, mai sotto 800x600
-    LARGHEZZA = max(800, int(MONITOR_LARGHEZZA * 0.80))
-    ALTEZZA   = max(600, int(MONITOR_ALTEZZA   * 0.80))
+    LARGHEZZA = max(800,  int(monitor_w * 0.80))
+    ALTEZZA   = max(600,  int(monitor_h * 0.80))
 
-else:  # "finestra" — dimensione fissa
+else:  # finestra fissa
     LARGHEZZA = 1280
     ALTEZZA   = 720
 
-# --- Scala UI ---
-# Tutti gli elementi grafici si moltiplicano per questo valore
-# Su uno schermo 1920x1080 → SCALA = 1.0 (riferimento)
+# ── Posizione centrata sul monitor ────────────────────────────
+POS_X = (monitor_w - LARGHEZZA) // 2
+POS_Y = (monitor_h - ALTEZZA)   // 2
+
+# ── Scala UI ─────────────────────────────────────────────────
 SCALA = LARGHEZZA / 1280
 
-# --- Altre costanti ---
+# ── Altro ─────────────────────────────────────────────────────
 FPS    = 60
-TITOLO = "FNAF Clone"
+TITOLO = "Black Night"
